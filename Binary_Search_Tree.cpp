@@ -38,18 +38,14 @@ public:
         //throw std::logic_error("Waiting to be implemented");
         
         if(root.getValue() == value)
-          result_holder = 1;
+          return true;
         else if(value > root.getValue()&& root.getRight() != NULL)
-          contains(*root.getRight(),value);
+          return contains(*root.getRight(),value);
         else if(value < root.getValue() && root.getLeft() != NULL)
-           contains(*root.getLeft(),value);
+           return contains(*root.getLeft(),value);
         else
-          result_holder = 0;
-          std::cout<<result_holder<<std::endl;
-          return result_holder;
+          return false;
     }
-private:
-  inline static bool result_holder = 0;
 };
 
 
@@ -59,6 +55,6 @@ int main(){
     Node n3(3, NULL, NULL);
     Node n2(2, &n1, &n3);
 
-    std::cout << BinarySearchTree::contains(n2,100); //root, search value
+    std::cout << BinarySearchTree::contains(n2,3); //root, search value
 }
 #endif
